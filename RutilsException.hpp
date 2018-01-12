@@ -1,9 +1,7 @@
 //
 // Created by Dowwind on 27/11/2017.
 //
-
-#ifndef RUTILS_RUTILSEXCEPTION_HPP
-#define RUTILS_RUTILSEXCEPTION_HPP
+#pragma once
 
 #include <string>
 #include <utility>
@@ -45,5 +43,3 @@ namespace rutils
     };
 
 }
-
-#endif //RUTILS_RUTILSEXCEPTION_HPP

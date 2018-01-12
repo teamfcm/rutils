@@ -10,6 +10,7 @@
 #include <experimental/filesystem>
 #include <fstream>
 #include <iostream>
+#include <string>
 
 #include "RutilsException.hpp"
 #include "RutilsParsingTools.hpp"
@@ -18,7 +19,6 @@ namespace rutils
 {
     class IniManager;
 
-    // TODO: il faut maintenant return cette classe quand on demande get Value
     class IniValue
     {
         std::string &_refValue;
@@ -86,25 +86,7 @@ namespace rutils
         bool exist(const std::string &key) const { return _values.find(key) != _values.end(); }
 
         std::string &at(const std::string &key) { return _values.at(key); }
-        IniValue operator[](const std::string &key)
-        {
-            return IniValue(_values[key]);
-        }
-
-        template <typename T,
-                typename = std::enable_if<std::is_arithmetic<T>::value>>
-        T getValueAs(const std::string &key)
-        {
-            if constexpr (std::is_floating_point<T>::value)
-                return std::stod(at(key));
-            else if constexpr (std::is_unsigned<T>::value)
-                return std::stoul(at(key));
-            else if constexpr (std::is_signed<T>::value)
-                return std::stol(at(key));
-            else
-                static_assert(!std::is_floating_point<T>::value && std::is_unsigned<T>::value && std::is_signed<T>::value, "Only string, boolean or scalar types are accepted");
-            return T();
-        }
+        IniValue operator[](const std::string &key) { return IniValue(_values[key]); }
     };
 
     class IniData
@@ -217,26 +199,6 @@ namespace rutils
     };
 
 };
-
-template<>
-std::string rutils::IniScope::getValueAs<std::string>(std::string const &key)
-{
-    return at(key);
-}
-
-template<>
-bool rutils::IniScope::getValueAs<bool>(std::string const &key)
-{
-    std::string &tmp = at(key);
-
-    if (tmp == "true")
-        return true;
-    else if (tmp == "false")
-        return false;
-    else
-        throw rutils::SyntaxError("[INI] value is neither true or false.");
-    return false;
-}
 
 std::ostream &operator<<(std::ostream &os, const rutils::IniValue &toPrint)
 {

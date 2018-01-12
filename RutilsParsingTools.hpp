@@ -2,8 +2,7 @@
 // Created by dowwind on 29/11/17.
 //
 
-#ifndef RUTILS_RUTILSPARSINGTOOLS_HPP
-#define RUTILS_RUTILSPARSINGTOOLS_HPP
+#pragma once
 
 #include <string>
 #include "RutilsException.hpp"
@@ -75,5 +74,3 @@ namespace rutils
     }
 
 }
-
-#endif //RUTILS_RUTILSPARSINGTOOLS_HPP

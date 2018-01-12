@@ -39,22 +39,6 @@ namespace rutils
             singleton = nullptr;
         }
     };
-
-    class Test
-    {
-    private:
-        int idx;
-
-    public:
-        Test() : idx(0) {}
-        ~Test() { std::cout << "Call dtor Test" << std::endl; }
-
-        void increment() { idx++; }
-
-        int getIdx() {return idx; }
-    };
-
-    template class Singleton<Test>;
 }
 
 #endif //RUTILS_SINGLETON_HPP

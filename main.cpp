@@ -16,11 +16,6 @@ int main() {
         file["test"]["test"] = "This is a string";
         std::cout << "Must be This is a string : " << file["test"]["test"] << std::endl;
 
-        /*std::cout << "{INT} A : " << file["scope1"].getValueAs<int>("a") << std::endl;
-        std::cout << "{STRING} Test : " << file["scope1"].getValueAs<std::string>("b") << std::endl;
-        std::cout << "{DOUBLE}B : " << file["scope2"].getValueAs<double>("b") << std::endl;
-        std::cout << "{BOOL} C : " << std::boolalpha << file["scope2"].getValueAs<bool>("c") << std::noboolalpha << std::endl;*/
-        //file["scope1"].getValueAs<rutils::IniScope>("lol");
     } catch (rutils::FileNotFound &e) {
         std::cerr << "An error occured : " << e.what() << std::endl;
         return (1);
